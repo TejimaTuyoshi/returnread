@@ -1,0 +1,7 @@
+ enum ActivateTiming
+    {
+        /// <summary>取った時にすぐ使う</summary>
+        Get,
+        /// <summary>「使う」コマンドで使う</summary>
+        Use,
+    }
