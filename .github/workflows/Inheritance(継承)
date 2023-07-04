@@ -1,1 +1,2 @@
-
+public class KeyController : ItemBase2D 
+//：の後に書かれているクラス名の関数を引っ張ってこれる（外部から）
