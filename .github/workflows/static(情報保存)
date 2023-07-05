@@ -1,0 +1,2 @@
+static string name = "~~~";
+//static があると、その情報を残してくれる。
