@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 配列に格納された整数を降順で並べ替える
+        int[] arr = { 10, 409, 3, 64, 0, -2, 13 };
+        //Array.Sort(arr, (a, b) => b - a);
+        //Array.Sort(arr, Conmpare);
+        Array.Sort(arr, (x , y) =>y - x);
+        Array.ForEach(arr, Console.WriteLine);
+    }
+
+    static int Conmpare(int x ,int y)
+    {
+        return y - x;
+        // if (x < y)
+        //  {
+        //      return -1;
+        //  }
+        //   else if (x == y)
+        //   { 
+        //       return 0;
+        //   }
+        //    else
+        //   {
+        //       return 1;
+        //   }
+    }
+}
