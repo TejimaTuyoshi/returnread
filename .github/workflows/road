@@ -1,0 +1,4 @@
+    public void Button()//あくまでクラスなのでこれだけでは無理。
+    {
+        SceneManager.LoadScene("Stage", LoadSceneMode.Single);
+    }
