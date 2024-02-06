@@ -1,1 +1,0 @@
-transform.position += transform.TransformDirection(Vector3.forward) * 270f * Time.deltaTime;
