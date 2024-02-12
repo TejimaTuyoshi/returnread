@@ -1,0 +1,10 @@
+    private new SpriteRenderer renderer;//反転する
+
+
+
+
+        if (_h != 0)
+        {
+            non.flipX = (_h < 0);
+            renderer.flipX = (_h < 0);
+        }
