@@ -1,6 +1,8 @@
     private new SpriteRenderer renderer;//反転する
 
 
+      renderer = GetComponent<SpriteRenderer>();
+
 
 
         if (_h != 0)
