@@ -1,0 +1,7 @@
+    AudioSource audioSource;
+    [SerializeField] AudioClip _audio;
+
+    audioSource = GetComponent<AudioSource>();
+
+
+    audioSource.PlayOneShot(_audio);
