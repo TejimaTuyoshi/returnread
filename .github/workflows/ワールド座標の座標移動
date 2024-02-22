@@ -1,0 +1,1 @@
+other.gameObject.transform.position = position.transform.position;
