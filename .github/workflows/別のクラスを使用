@@ -1,0 +1,1 @@
+[SerializeField] Player player;\\使いたい変数がある場合、その変数がprivateでない状態でなければいけない。
