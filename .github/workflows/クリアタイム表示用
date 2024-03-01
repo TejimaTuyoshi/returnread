@@ -1,0 +1,1 @@
+text.text = CountDownTimer.cleartime.ToString("F1") + "•b";
