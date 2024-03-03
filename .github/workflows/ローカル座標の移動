@@ -1,2 +1,5 @@
 transform.position += transform.TransformDirection(Vector3.forward) * 270f * Time.deltaTime;//前移動
 transform.position += transform.TransformDirection(Vector3.back) * 270f * Time.deltaTime;//後ろ移動
+
+
+transform.position += transform.TransformDirection(Vector3.forward) * 810f * Time.deltaTime;//３マス分(標準)の移動
