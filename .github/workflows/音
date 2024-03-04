@@ -1,0 +1,2 @@
+audioSource.PlayOneShot();//()内は変数
+audioSource.Play();//これは()に入れてはいけない
