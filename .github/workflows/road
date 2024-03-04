@@ -2,3 +2,4 @@
     {
         SceneManager.LoadScene("Stage", LoadSceneMode.Single);
     }
+//bottonで使うためには、privateでは使用不可なので注意。
