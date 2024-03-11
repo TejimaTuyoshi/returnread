@@ -1,0 +1,8 @@
+        if (_isMove == true || _count == 3)
+        {
+            rbody.AddForce(Vector3.right * speedX, ForceMode.VelocityChange);
+        }
+        else if (_isMove == false) 
+        {
+            speedX = 0;
+        }
