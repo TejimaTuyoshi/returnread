@@ -1,0 +1,5 @@
+        if (FindObjectsOfType<DateShare>().Length > 1)
+        {
+            // 重複しないように、既にある時は自分自身を破棄する
+            Destroy(this.gameObject);
+        }
