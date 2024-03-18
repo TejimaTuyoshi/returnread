@@ -1,0 +1,2 @@
+CountDownTime -= Time.deltaTime;// 経過時刻を引いていく
+CountDownTime += Time.deltaTime;// 経過時刻を追加する
