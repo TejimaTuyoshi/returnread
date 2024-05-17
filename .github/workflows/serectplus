@@ -1,0 +1,90 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class serectplus : MonoBehaviour
+{
+    private Image[] _cells; // Image 型の配列フィールド
+    private int _selectedIndex; // 選択中のセルの番号
+
+    [SerializeField]
+    private int _count;
+
+    private void Start()
+    {
+        _cells = new Image[_count];
+        for (var i = 0; i < _cells.Length; i++)
+        {
+            var obj = new GameObject($"Cell{i}");
+            obj.transform.parent = transform;
+
+            var image = obj.AddComponent<Image>();
+            _cells[i] = image;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) // 左キーを押した
+        {
+            MoveLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) // 右キーを押した
+        {
+            MoveRight();
+        }
+
+        // 移動後にチェックして、不正なら下限・上限でキャップする
+        if (_selectedIndex < 0) { _selectedIndex = 0; }
+        if (_selectedIndex >= _cells.Length) { _selectedIndex = _cells.Length - 1; }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // ゲームオブジェクトごと削除
+            // Destroy(_cells[_selectedIndex].gameObject);
+
+            // ゲームオブジェクトを非アクティブに
+            // _cells[_selectedIndex].gameObject.SetActive(false);
+
+            // Image コンポーネントを無効化する
+            _cells[_selectedIndex].enabled = false;
+            MoveLeft();
+
+            // 画像を透明に
+            // _cells[_selectedIndex].color = Color.clear;
+        }
+
+        for (var i = 0; i < _cells.Length; i++)
+        {
+            var cell = _cells[i];
+
+            if (i == _selectedIndex) { cell.color = Color.red; }
+            else { cell.color = Color.white; }
+        }
+    }
+
+    private void MoveLeft()
+    {
+        for (var i = _selectedIndex - 1; i >= 0; i--)
+        {
+            var cell = _cells[i];
+            if (cell.enabled)
+            {
+                _selectedIndex = i;
+                break;
+            }
+        }
+    }
+
+    private void MoveRight()
+    {
+        for (var i = _selectedIndex + 1; i < _cells.Length; i++)
+        {
+            var cell = _cells[i];
+            if (cell.enabled)
+            {
+                _selectedIndex = i;
+                break;
+            }
+        }
+    }
+}
