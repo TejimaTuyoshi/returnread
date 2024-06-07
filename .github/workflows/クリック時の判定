@@ -1,1 +1,2 @@
 public void OnPointerClick()
+//IPointerClickHandler　が継承の場所に必要。
