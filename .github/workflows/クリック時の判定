@@ -1,2 +1,2 @@
-public void OnPointerClick()
+public void OnPointerClick(PointerEventData eventData)
 //IPointerClickHandler　が継承の場所に必要。
