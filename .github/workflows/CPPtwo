@@ -1,0 +1,111 @@
+#include <iostream>
+#include <vector>//可変長配列
+#include <unordered_map>//連想配列
+#include <functional>//デリゲート
+
+//std::vector<int> datas;
+
+//int main()
+//{
+	//datas.emplace_back(10);
+	//datas.emplace_back(30);
+	//datas.emplace_back(50);
+	//datas.emplace_back(80);
+
+	//datas[2] = 100;//倍にして増やすのでまぁまぁでかい。
+
+	//for (auto dat : datas){
+	//	printf("%d\n", dat);
+	//}
+//}
+
+//std::unordered_map<std::string, int>datas;//keyとvalueのような物。
+
+//int character[5] = { 1,2,3,4,5 };
+
+//int main()
+//{//キーの重複はメモリを使用するだけで、出力はされない。
+//ソートはできない。
+	//datas.insert(std::make_pair("ゆうしゃ", 100));
+	//datas.insert(std::make_pair("まほうつかい", 200));
+	//datas.insert(std::make_pair("けんじゃ", 300));
+	//datas.insert(std::make_pair("せんし", 400));
+
+	//for (auto dat : datas){
+		//printf("%s, %d\n", dat.first.c_str(), dat.second);
+	//}
+//}
+
+//std::function<void(int)> func = [](int n) {//ここの[]をキャプチャーという。getが必要になる際、
+//「=」と入れれば外の中身と同じになる。「&」と入れると参照(書き込み可)になる。
+	//printf("n = %d\n",n);
+	//イグニチャードと呼ぶ
+//};
+
+//int main()
+//{
+	//func(10);//これによって
+//}
+
+//class Button {//デリゲートによるオブジェクト作成例
+//public:
+	//Button(const std::function<void()>& call_back) {
+		//call_back_ = call_back;
+	//}
+	//void onClick();
+	//std::function<void()> call_back_;
+//};
+
+//void Button::onClick() {
+	//call_back_();
+//}
+
+//Button btnA([]() {
+	//printf("call button a\n");
+//});
+
+//Button btnB([]() {
+	//printf("call button b\n");
+//});
+
+//int main() {
+	//btnA.onClick();
+	//btnB.onClick();
+//}
+
+
+class A {
+public:
+	//void func() const;//関数内で「書き換えないよ」
+	//const int* func();
+	//int* const func();
+	//void func(const int a);
+	//const int& ~~~ にすることで多い容量の処理での使用が楽になる。
+	int value_ = 0;
+};
+
+//void A::func() const {
+//
+//}
+
+//const int* A::func() {
+	//return &value_;
+//}
+
+//int* const A::func() {
+	//return &value_;
+//}
+
+//A instance;
+
+//void A::func(const int a) {//この状態ではconstの意味がない。
+//
+//}
+
+int main() {
+	//const int* p = instance.func();//ポインターの前にあると「参照先で書き換えないよ」
+	//int n = *p;
+
+	//int* const p = instance.func();//ポインターの後にあると「参照先を差し替えられないよ」
+	//*p = 100;
+}
