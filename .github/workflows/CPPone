@@ -1,0 +1,49 @@
+#include <iostream>
+
+class Base {
+public:
+    Base() {}
+    virtual~Base() {//ここにvirtualをおかないと、派生クラスのデストラクター(~)が呼ばれなくなる。
+        printf("delete base\n");
+    }
+
+    virtual void func() = 0;//純粋仮想関数
+    //通常の場合
+    //オーバーライドが継承先で呼ばれていない場合、基底クラスの変数が呼ばれる。
+    //純粋仮想関数の場合
+    //オーバーライドが継承先で呼ばれていない場合、エラーになる。
+
+    int a;
+};
+
+class Foo: public Base {
+public:
+    Foo() {}
+    ~Foo() {}
+
+    void func() override;
+};
+
+void Foo::func() {
+    printf("call func foo\n");
+}
+
+class Hoo : public Base {
+public:
+};
+//ひし形継承(多重継承の一つ)多重継承は起こらないようにしよう。
+//class A : public Foo, public Hoo {
+//public:
+//};
+
+Foo* pf = nullptr;
+
+int main()
+{
+    pf = new Foo();
+
+    Base* base = pf;
+    base -> func();
+
+    delete base;
+}
