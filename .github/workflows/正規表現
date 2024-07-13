@@ -1,0 +1,20 @@
+using System.Text.RegularExpressions;
+
+string text = talkText;
+var matches = Regex.Matches(_effectText, "{%([\s\S]*)}");//これが正規表現の入口
+foreach (Match m in matches)
+{
+    string key = m.Groups[1].Value;
+		switch(key)
+		{
+		case "PlayerName":
+	    text = text.Replace(m.Value, playerName);
+			break;
+
+		case "Weather":
+	    text = text.Replace(m.Value, WetherCtrl.GetCurrentWeather());
+			break;
+		}
+}
+
+return text;
