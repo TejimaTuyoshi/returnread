@@ -1,0 +1,78 @@
+using UnityEngine;
+
+public class TriangleHitArea : MonoBehaviour
+{
+    Vector3 pos0 = new Vector3(0f, 0f, 9f);
+    Vector3 pos1 = new Vector3(5f, 0f, -7f);
+    Vector3 pos2 = new Vector3(-3f, 0f, -5f);
+
+    Vector3 TriVec0;
+    Vector3 TriVec1;
+    Vector3 TriVec2;
+
+    float cross0;
+    float cross1;
+    float cross2;
+    float dot;
+
+    bool Hit = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        TriVec0 = (pos1 - pos0).normalized;
+        TriVec1 = (pos2 - pos1).normalized;
+        TriVec2 = (pos0 - pos2).normalized;
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 PlayerPos = this.transform.position;
+
+        Vector3 HitVec0 = PlayerPos - pos0;
+        Vector3 HitVec1 = PlayerPos - pos1;
+        Vector3 HitVec2 = PlayerPos - pos2;
+
+        cross0 = TriVec0.z * HitVec0.x - TriVec0.x * HitVec0.z;
+        cross1 = TriVec1.z * HitVec1.x - TriVec1.x * HitVec1.z;
+        cross2 = TriVec2.z * HitVec2.x - TriVec2.x * HitVec2.z;
+
+        if (cross0 >= 0f)
+        {
+            if (cross1 >= 0f && cross2 >= 0f)
+            {
+                Hit = true;
+            }
+            else if (cross1 < 0f && cross2 < 0f)
+            {
+                Hit = true;
+            }
+            else
+            {
+                Hit = false;
+            }
+        }
+
+
+        if (Hit)
+        {
+            if (Mathf.Abs(cross0) <= Mathf.Abs(cross1) && Mathf.Abs(cross0) <= Mathf.Abs(cross2))
+            {
+                dot = Vector3.Dot(TriVec0, HitVec0);
+                transform.position = new Vector3(TriVec0.x * dot + pos0.x, PlayerPos.y, TriVec0.z * dot + pos0.z);
+            }
+            else if (Mathf.Abs(cross1) <= Mathf.Abs(cross2))
+            {
+                dot = Vector3.Dot(TriVec1, HitVec1);
+                transform.position = new Vector3(TriVec1.x * dot + pos1.x, PlayerPos.y, TriVec1.z * dot + pos1.z);
+            }
+            else
+            {
+                dot = Vector3.Dot(TriVec2, HitVec2);
+                transform.position = new Vector3(TriVec2.x * dot + pos2.x, PlayerPos.y, TriVec2.z * dot + pos2.z);
+            }
+        }
+    }
+}
