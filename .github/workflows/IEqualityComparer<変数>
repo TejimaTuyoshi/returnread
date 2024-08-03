@@ -1,0 +1,5 @@
+class BatterEqualityComparer : IEqualityComparer<Batter>
+{
+//この状態なら<Batter>というところから
+//Batter(double battingAverage, int runsBattedIn, int homeRuns)の中身を取り出すことが可能
+}
