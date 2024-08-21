@@ -1,0 +1,1 @@
+[SerializeField] InstanceEnemys enemys;//型の部分はenumとして作成したものの名前を入れる。
