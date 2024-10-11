@@ -14,7 +14,7 @@ public class A
     //public void M() { Debug.Log($"M"); }//この場合は衝突する。
 }
 
-public class paraparacharhan : MonoBehaviour
+public class paraparacharhan : MonoBehaviour//クラス名は適当です。
 {
     // Start is called before the first frame update
     void Start()
