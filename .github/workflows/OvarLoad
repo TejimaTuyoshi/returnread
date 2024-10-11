@@ -2,6 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class constract
+{
+    public constract(int x, int y): this(new Vector2Int (x, y)) // Player(Vector2Int) を呼び出したい場合
+    {
+        //コンストラクタは一回しか実行してはいけない。
+        //そのため継承部分にthis()で作成する必要がある。
+    }
+
+    public constract(Vector2Int pt)
+    {
+        Debug.Log($"Player: X={pt.x}, Y={pt.y}");
+    }
+
+}
+
 //class Player
 //{
 //public void Move(int x, int y)
@@ -43,9 +58,11 @@ public class paraparacharhan : MonoBehaviour
         //a.M(8);
         //var player = new Player();
         //player.Move(10, 20); // Move(int, int)
-        
+
         //var v = new Vector2Int(100, 200);
         //player.Move(v); // Move(Vector2Int)
 
+        new constract(10, 20); // Player(int, int)
+        new constract(new(100, 200)); // Player(Vector2Int)//オーバーロードでもコンストラクト可能。
     }
 }
