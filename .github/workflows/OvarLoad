@@ -1,0 +1,26 @@
+public class A
+{
+    //メソッドのオーバーロード
+    //同じ型の中に、同じ名前のメソッドが複数宣言されている場合。
+    //メソッドは同じ名前でもシグネチャ(パラメータ)が異なれば衝突しない;
+
+    public void M() { Debug.Log($"M"); }
+
+    public void M(int value) { Debug.Log($"A.M: {value}"); }//この場合は衝突しない。
+
+    //public void M() { Debug.Log($"A.M: {value}"); }
+    //戻り値型はメソッドのシグネチャには含まれない。(一つ目と衝突する)
+
+    //public void M() { Debug.Log($"M"); }//この場合は衝突する。
+}
+
+public class paraparacharhan : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        var a = new A();
+        a.M();
+        a.M(8);
+    }
+}
