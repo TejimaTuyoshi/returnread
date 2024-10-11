@@ -1,26 +1,49 @@
-public class A
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+class Player
 {
+    public void Move(int x, int y)
+    {
+        Debug.Log($"Player.Move(int, int): X={x}, Y={y}");
+    }
+
+    public void Move(Vector2Int pt)
+    {
+        Debug.Log($"Player.Move(Vector2Int): X={pt.x}, Y={pt.y}");
+    }
+}
+
+//public class A
+//{
     //メソッドのオーバーロード
     //同じ型の中に、同じ名前のメソッドが複数宣言されている場合。
     //メソッドは同じ名前でもシグネチャ(パラメータ)が異なれば衝突しない;
 
-    public void M() { Debug.Log($"M"); }
+    //public void M() { Debug.Log($"M"); }
 
-    public void M(int value) { Debug.Log($"A.M: {value}"); }//この場合は衝突しない。
+    //public void M(int value) { Debug.Log($"A.M: {value}"); }//この場合は衝突しない。
 
     //public void M() { Debug.Log($"A.M: {value}"); }
     //戻り値型はメソッドのシグネチャには含まれない。(一つ目と衝突する)
 
     //public void M() { Debug.Log($"M"); }//この場合は衝突する。
-}
+//}
 
-public class paraparacharhan : MonoBehaviour//クラス名は適当です。
+public class paraparacharhan : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        var a = new A();
-        a.M();
-        a.M(8);
+        //var a = new A();
+        //a.M();
+        //a.M(8);
+        var player = new Player();
+        player.Move(10, 20); // Move(int, int)
+        
+        var v = new Vector2Int(100, 200);
+        player.Move(v); // Move(Vector2Int)
+
     }
 }
