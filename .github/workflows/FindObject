@@ -1,0 +1,1 @@
+GameObject.FindObjectOfType<EnemyCount>();//＜＞内のクラスを持つobjectの情報を変数に入れる。
