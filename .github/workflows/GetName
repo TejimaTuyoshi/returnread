@@ -3,5 +3,5 @@
     // Start is called before the first frame update
     void Start()
     {
-        HitEffectName = gameObject.name;
+        HitEffectName = gameObject.name;//エフェクトによって名前を把握しておかなければならない。
     }
