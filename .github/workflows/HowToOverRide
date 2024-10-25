@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+
+public class A 
+{
+    //virtual修飾子で仮想化(default)を行う。これを「仮想メソッド」という。
+    public virtual void M() { Debug.Log($"A.M") ; }
+}
+
+public class B : A
+{
+    //派生クラスは基底クラスで宣言されている「仮想メソッド」(virtual)を上書きすることが可能。
+    //仮想メソッドを上書きするためには、同じ「引数」、「戻り値」で「override」をすることが必要。
+    public override void M() { Debug.Log($"B.M") ; } 
+}
+
+
+
+public class Test : MonoBehaviour
+{
+    private void Start()
+    {
+        A a = new B();
+        a.M();//この場合はBのMメソッドが呼び出されている。
+    }
+}
