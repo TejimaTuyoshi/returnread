@@ -1,0 +1,22 @@
+public class A 
+{
+    public void M() { Debug.Log($"A.M") ; }
+}
+
+public class B : A
+{
+    //AクラスのMメソッド(void型)と同じ名前・パラメータ
+    //new修飾子で明確に隠蔽(省略した場合、警告が出現)
+    public new void M() { Debug.Log($"B.M") ; } 
+}
+
+
+
+public class Test : MonoBehaviour
+{
+    private void Start()
+    {
+        A a = new B();
+        a.M();//この場合、型になっている「A」のMメソッドが呼ばれている。
+    }
+}
