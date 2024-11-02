@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//UIのImageをチカチカさせる。
 public class ClassicUI : MonoBehaviour
 {
     Image UI;
     float changeTime = 0f;
     bool isChange = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         UI = GetComponent<Image>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         changeTime++;
-        //changeTime += Time.deltaTime; //��{�͂�����
-        //Debug.Log(changeTime);
         if (changeTime >= 500 && !isChange)
         {
             isChange = true;
