@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ACT2 : MonoBehaviour
+{
+    float r = 5f;
+    float x;
+    float y;
+    private void Start()
+    {
+     
+    }
+
+    private void FixedUpdate()
+    {
+        y = transform.position.y;
+        x = transform.position.x;
+
+        x += Mathf.Cos(Time.time) * Time.deltaTime;
+
+        transform.position = new Vector2(x,y);
+    }
+
+}
