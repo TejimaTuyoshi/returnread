@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class ACT1 : MonoBehaviour
 {
-    
+    float r = 5f;
+    float x;
+    float y;
     private void Start()
     {
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        
+        y = transform.position.y;
+        x = r * Mathf.Sin(Time.time);
+
+        transform.position = new Vector2(x,y);
     }
 
 }
