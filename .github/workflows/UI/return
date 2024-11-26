@@ -1,0 +1,12 @@
+    private new SpriteRenderer renderer;//反転する
+
+
+      renderer = GetComponent<SpriteRenderer>();
+
+
+
+        if (_h != 0)
+        {
+            non.flipX = (_h < 0);
+            renderer.flipX = (_h < 0);
+        }
