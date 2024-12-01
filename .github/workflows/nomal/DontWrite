@@ -1,0 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class Sample : MonoBehaviour
+{
+
+    private void Start()
+    {
+        Debug.Log("");
+    }
+
+    private void Update()
+    {
+        
+    }
+    //Sample()
+    //{
+    //Debug.Log("コンストラクターです");
+    //}
+    //これだと、実行せずにエラーが出現する。
+    //実行時には+2個の同じエラーが出現し、終了後に+1個同じエラーが出現した。
+
+    //~Sample()
+    //{
+    //   Debug.Log("デストラクターです");
+    //}
+
+    //public void Dispose()
+    //{
+    //    Debug.Log($"破棄メソッドです。");
+    //}
+    //これを書くためにはそのクラスがIDisposableを継承していなければならない。
+
+    //using 変数
+    //using (Disposeメソッドをもつオブジェクト);
+    //または　　using var 変数 = new クラス();
+    //手軽に行うためのコード
+
+
+}
+
+
+
+//本来なら「実行されるもの」が「ファイナライザ」によって削除されないように、
+//「不要なもの」を消去される。
+//フィールドに関数を入れる=>他の場所で使われるこもがある可能性があるので消去されない。
+//その場合、スコープ内の指定した変数を追加する。
+//Unityの削除は「GavageCollection」の実行時に削除される。
+//ただし、定期的に確認。の方式を取っているため、実際に「ずっと」なわけではない。
+//頻繁に確認する方法があるが、その分重くなるので注意。
+
+//メモリリーク=>頻繁に消せるわけじゃないガベージコレクション。
+//コレクションが変数を「消す」ためには「使われていない」ことを確認する必要がある。
+//中身が何処かに繋がっているor残り続けている状態では削除されない。
+//Managect Heap = スクリプトで使用されている容量。
+
+//ファイナライザが使用されない代わりに、「Dispose」を使用する。
+//書き方は複雑だが、基本は変わらない。
+
+//var stream = File.OpenRead("test.txt"); // ファイルを開く（ストリームを取得）
+//var reader = new StreamReader(stream); // ストリームからテキストを読み込みオブジェクト生成
+//var data = reader.ReadToEnd(); // テキスト読み込み
+//Debug.Log($"data={data}");
+//reader.Dispose(); // Dispose() で読み込みオブジェクト破棄
+//stream.Dispose(); // Dispose() でストリーム破棄
+
+//using (var stream = File.OpenRead("test.txt"))
+//{
+//    using (var reader = new StreamReader(stream))
+//    {
+//       var data = reader.ReadToEnd();
+//        Debug.Log($"data={data}");
+//    }
+//}
+
+
+
+
