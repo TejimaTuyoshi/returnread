@@ -1,0 +1,33 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class RotateCamera:MonoBehaviour
+{
+  [SerializeField] Gameobject _target;
+  [SerializeField] float _rotateSpeedAnglePerSec
+  [SerializeField] float _targetAngle;
+  [SerializeField] float _angleThata;
+  [SerializeField] float _targetDistance;
+  [SerializeField] Quaternion _rotate;
+  [SerializeField] Vector3 _diffAngle;
+  void Start()
+  {
+    Vector3 diff = this.transform.position - _target.transform.position;
+    _targetAngle = Mathf.Atan2(diff.x,diff.x);
+    _targetDistance = Mathf.Sqrt(diff.x * diff.x + diff.z * diff.z);
+
+    _rotate = this.transform.rotation;
+    _diffAngle = _rotate.eulerAngles;
+  }
+  const float PI2 = 2f * Mathf.PI;
+  void Update()
+  {
+    _angleThata += _rotateSpeedAnglePerSec / 180f * Mathf.PI * Time.deltaTime;
+    if (_angleThata > PI2) _angleThata -= PI2;
+    if (_angleThata < PI2) _angleThata += PI2;
+    this.transform.position = new Vector3 (Mathf.Cos(_angleThata) * _targetDistance ,this.transfom.position.y, Mathf,Sin(_angleThata) * _targetDistance );
+    //this.transform.LookAt(_target.transform.position,Vector3.up)
+    this.transfom.rotation = Quaternion.Euler(_diffAngle.x,_diffAngle.y - _angleThata / Mathf.PI * 180f,_diffAngle.z);
+  }
+  
+}
