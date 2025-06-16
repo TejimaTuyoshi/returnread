@@ -1,0 +1,11 @@
+using UnityEngine;
+
+public class Rotate : MonoBehaviour
+{
+    [SerializeField][Range(-150f, 300f)]float _speedAngleParSec = 0f;
+
+    void Update()
+    {
+        this.transform.rotation *= Quaternion.Euler(0f, _speedAngleParSec * Time.deltaTime * AllRotateChanger.Instans.mSpeed, 0f);
+    }
+}
