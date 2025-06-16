@@ -1,0 +1,25 @@
+using UnityEngine;
+
+public class AllRotateChanger : MonoBehaviour
+{
+    private static AllRotateChanger  _instans = null;
+    public static AllRotateChanger Instans
+    {
+        get
+        {
+            if (_instans == null)
+            {
+                _instans = FindObjectOfType<AllRotateChanger>();
+                if (_instans is null)
+                {
+                    var obj = new GameObject("AllRotateChanger");
+                    _instans = obj.AddComponent<AllRotateChanger>();
+                }
+            }
+            return _instans;
+        }
+    }
+
+    [SerializeField] float speed = 1f;
+    public  float mSpeed => speed;
+}
