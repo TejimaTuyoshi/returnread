@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <button onclick="dl()">ダウンロードが始まらない場合はクリック</button>
+ 
+    <script type='text/javascript'>
+      function dl() {
+        const json = <?= getData(); ?>;
+        const name = <?= getName(); ?>;
+        const blob = new Blob([json], {
+          "type" : "application/json"
+        });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = name + '.json';
+        link.click();
+      }
+      dl();
+  </script>
+  </body>
+</html>
