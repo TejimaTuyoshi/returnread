@@ -1,0 +1,125 @@
+function downloadDialog() {
+  const html = HtmlService.createTemplateFromFile("download").evaluate();
+  SpreadsheetApp.getUi().showModalDialog(html, 'json形式でダウンロード');
+}
+ 
+function onOpen() {
+  const ui = SpreadsheetApp.getUi();
+  ui.createMenu('json')
+    .addItem('json形式でダウンロード', 'downloadDialog')
+    .addToUi();
+}
+
+function getData() {
+  //データ取得するシート（現在開いているシートを指定）
+  var sheet = SpreadsheetApp.getActiveSheet();
+
+  // シートのデータを取得
+  let splitData = sheet.getDataRange().getValues();
+
+  var propertys = []; //情報
+
+  // JSON出力をマップに格納
+  var output = [];
+
+  //JSON用のkey
+  var keys = [];
+
+  //エンドマーカーよりも前にある行を削除
+  for(let i = 0; i < splitData.length; i++)
+  {
+    if(splitData[i].indexOf('data_start') != -1)
+    {
+      splitData.splice(0, i+1);
+      break;
+    }
+  }
+
+  //エンドマーカーよりも後ろにある行を削除
+  for(let i = 0; i < splitData.length; i++)
+  {
+    if(splitData[i].indexOf('data_end') != -1)
+    {
+      splitData.splice(i, i+1);
+      break;
+    }
+  }
+
+  //必要な列を残す----------------------------------
+  var invaledColumnsIdArray = [];
+  for(let i = 0; i < splitData[0].length; i++)
+  {
+    if(splitData[0][i] == 'valid'){
+      invaledColumnsIdArray[i] = true;
+    }
+    else{
+      invaledColumnsIdArray[i] = false;
+    }
+  }
+  console.log(invaledColumnsIdArray)
+  for(let i = invaledColumnsIdArray.length - 1; i >= 0 ; i--)
+  {
+    if (invaledColumnsIdArray[i] == false){
+      //不要なカラムを破棄する
+      splitData.forEach(column => column.splice(i, 1));
+    }
+  }
+
+  // 列のvalidationは済んだのでvalid列を削除
+  splitData.splice(0, 1);
+  //------------------------------------------------
+  // Keyを格納
+  keys = splitData[1];
+  // 形式を取得
+  propertys = splitData[0];
+  var validIndexColumn = keys.findIndex(key => key == 'validation');
+
+  if (validIndexColumn != -1)
+  {
+    // Keyの格納は済んだのでValidationだけを削除
+    keys.splice(validIndexColumn, 1);
+    propertys.splice(validIndexColumn, 1);
+
+    // 行を削除
+    splitData.forEach( sp => console.log(sp[validIndexColumn]));
+    splitData = splitData.filter(column => column[validIndexColumn] != 0);
+  }
+  else
+  {
+    //TODO エラー表記 バリデーション列がないマスター
+  }
+
+  // 先頭の２行削除
+  splitData = splitData.slice(2, splitData.length);
+  // バリデーション列削除
+  splitData.forEach(column => column.splice(validIndexColumn, 1));
+
+  console.log(keys);
+  console.log(propertys);
+  console.log(splitData);
+
+  let list=[];
+
+  // データをJsonに
+  for (const row of splitData) {
+    // 行データをobject化 {"項目名": "値", ... }形式 
+    const tempObj = {};
+    for (const index in row) { 
+      tempObj[keys[index]] = row[index];
+    }
+    // 行データobjectを配列に追加
+    list.push(tempObj);
+  }
+
+  var outputData = {list};
+
+  var ret = JSON.stringify(outputData, null, '\t');
+  console.log(ret);
+  return ret;
+}
+
+//書き出すシートの名前を選択
+function getName()
+{
+  return SpreadsheetApp.getActiveSheet().getName();
+}
